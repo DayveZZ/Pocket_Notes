@@ -2,16 +2,43 @@
 
 :root {
   --dark: #292929;
+  --light-gray: #d9d9d9;
+
+  --purple: #b38bfa;
+  --pink: #ff79f2;
+  --cyan: #43e6fc;
+  --orange: #f19576;
+  --blue: #0047ff;
+  --light-blue: #6691ff;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.purple {
+  background: var(--purple);
+}
+.pink {
+  background: var(--pink);
+}
+.cyan {
+  background: var(--cyan);
+}
+.orange {
+  background: var(--orange);
+}
+.blue {
+  background: var(--blue);
+}
+.light-blue {
+  background: var(--light-blue);
 }
 
 .main {
-  font-family: "Roboto", sans-serif;
   height: 100vh;
   display: flex;
 }
@@ -19,24 +46,70 @@
 /* LEFT PANEL */
 .leftBox {
   background: #ffffff;
-  padding: 2rem;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
-  width: 25%;
+  min-width: 330px;
 }
 
 .leftBox h2 {
   font-weight: 500;
   font-size: 1.8rem;
   text-align: center;
-  padding: 1rem 0;
+  padding: 4rem 2rem 2rem 2rem;
+}
+
+/* NOTES GROUPS */
+.group {
+  height: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  overflow-y: auto;
+}
+.group::-webkit-scrollbar {
+  width: 10px;
+  background: var(--light-gray);
+  border-radius: 10px;
+}
+
+.group::-webkit-scrollbar-thumb {
+  background: white;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.group-list {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: 500;
+}
+.group-list > div {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  /* background: #d32727; */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.group-list > * {
+  cursor: pointer;
 }
 .leftBox > div {
   display: flex;
   justify-content: end;
+  padding: 2rem;
+  position: absolute;
+  bottom: 0;
+  width: 330px;
 }
 .plusBtn {
   width: 70px;
@@ -49,8 +122,11 @@
   align-items: center;
   justify-content: center;
   font-size: 3.8rem;
+  cursor: pointer;
 }
-
+.plusBtn:hover {
+  color: var(--light-gray);
+}
 /* RIGHT PANEL */
 .rightBox {
   width: 100%;
@@ -90,31 +166,12 @@
   gap: 5px;
 }
 
-/* NOTES GROUPS */
-.group {
-  /* border: 2px solid red; */
-  height: 100%;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.group-list {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-weight: 500;
-}
-.group-list > div {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background: #d32727;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.group-list > * {
-  cursor: pointer;
+/* Create Group */
+.create-group {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 50%;
+  width: 30%;
+  background: #fff;
 }
