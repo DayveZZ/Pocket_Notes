@@ -1,35 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import bgPreview from "./assets/image-removebg-preview 1.svg";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="main">
+      <div className="leftBox">
+        <h2>Pocket Notes</h2>
+
+        <ul className="group">
+          <li className="group-list">
+            <div>PN</div>
+            <span>Personal Notes</span>
+          </li>
+          <li className="group-list">
+            <div>WK</div>
+            <span>Work</span>
+          </li>
+        </ul>
+
+        <div>
+          <button className="plusBtn">+</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div className="rightBox">
+        <img src={bgPreview} alt="illustration" />
+        <h1>Pocket Notes</h1>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+          Send and receive messages without keeping your phone online. <br />{" "}
+          Use Pocket Notes on up to 4 linked devices and 1 mobile phone.
         </p>
+
+        {/* <div>
+            <h2>Personal Notes</h2>
+            <button>+ Note</button>
+          </div>
+          <div>
+            <div>
+              <p>This is a sample note.</p>
+              <time>Nov 25, 2025 - 10:45 AM</time>
+            </div>
+          </div>
+        </div> */}
+
+        <div className="footerText">
+          <span>🔒</span> end-to-end encrypted
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
