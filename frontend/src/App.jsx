@@ -1,7 +1,26 @@
+import { useState, useEffect } from "react";
 import "./App.css";
 import bgPreview from "./assets/image-removebg-preview 1.svg";
 
 function App() {
+  const [show, setShow] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setShow(false); // or setShow(prev => !prev) if you prefer toggle
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <>
       <div className="main">
@@ -91,7 +110,9 @@ function App() {
           </ul>
 
           <div>
-            <button className="plusBtn">+</button>
+            <button className="plusBtn" onClick={() => setShow(true)}>
+              +
+            </button>
           </div>
         </div>
 
@@ -108,24 +129,28 @@ function App() {
           </div>
         </div>
 
-        <div className="create-group">
-          <h1>Create New Group</h1>
-          <span>
-            <label>Group Name</label>
-            <input type="text" />
-          </span>
-          <span>
-            <label>Choose colour</label>
-            <div>
-              <p className="colour purple"></p>
-              <p className="colour pink"></p>
-              <p className="colour cyan"></p>
-              <p className="colour orange"></p>
-              <p className="colour blue"></p>
-              <p className="colour light-blue"></p>
-            </div>
-          </span>
-        </div>
+        {show && (
+          <div className="create">
+            <form onSubmit={handleSubmit} className="create-group">
+              <h1>Create New Group</h1>
+              <div className="group-name">
+                <label>Group Name</label>
+                <input type="text" placeholder="Enter group name" />
+              </div>
+              <div className="colour-group">
+                <label>Choose colour</label>
+                <div className="colours">
+                  <button className="colour purple"></button>
+                  <button className="colour pink"></button>
+                  <button className="colour cyan"></button>
+                  <button className="colour orange"></button>
+                  <button className="colour blue"></button>
+                  <button className="colour light-blue"></button>
+                </div>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </>
   );
