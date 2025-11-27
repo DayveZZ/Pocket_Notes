@@ -1,7 +1,13 @@
+import { useState } from "react";
 import { useGroups } from "../context/GroupsContext.jsx";
 
 export default function GroupList({ onCreate }) {
   const { groups } = useGroups();
+  const [selectedGroup, setSelectedGroup] = useState(null);
+
+  const handleSelectGroup = (index) => {
+    setSelectedGroup(index);
+  };
 
   return (
     <div className="leftBox">
@@ -9,7 +15,13 @@ export default function GroupList({ onCreate }) {
 
       <ul className="group">
         {groups.map((g, i) => (
-          <li key={i} className="group-list">
+          <li
+            key={i}
+            className={`group-list ${
+              selectedGroup === i ? "active-group" : ""
+            }`}
+            onClick={() => handleSelectGroup(i)}
+          >
             <div className={g.colour}>
               {g.name
                 .split(" ")

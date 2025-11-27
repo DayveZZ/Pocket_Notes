@@ -20,6 +20,6 @@
   font-size: 3.8rem;
   cursor: pointer;
 }
-.plusBtn:hover {
+.plusBtn > button:hover {
   color: var(--light-gray);
 }
