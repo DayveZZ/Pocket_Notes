@@ -4,21 +4,35 @@ import bgPreview from "./assets/image-removebg-preview 1.svg";
 
 function App() {
   const [show, setShow] = useState(false);
+  const [selectedColour, setSelectedColour] = useState(null);
+
+  const colour = ["purple", "pink", "cyan", "orange", "blue", "light-blue"];
+  const [groupName, setGroupName] = useState("");
+  const [groups, setGroups] = useState([]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const finalColour =
+      selectedColour || colour[Math.floor(Math.random() * colour.length)];
+
+    setGroups([...groups, { name: groupName, colour: finalColour }]);
+
+    setGroupName("");
+    setSelectedColour(null);
+    setShow(false);
   };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
-        setShow(false); // or setShow(prev => !prev) if you prefer toggle
+        setShow(false);
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-    };
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
   return (
@@ -28,85 +42,20 @@ function App() {
           <h2>Pocket Notes</h2>
 
           <ul className="group">
-            <li class="group-list">
-              <div class="purple">PN</div>
-              <span>Personal Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="pink">PN</div>
-              <span>Personal Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="cyan">JG</div>
-              <span>Javascript grp</span>
-            </li>
-
-            <li class="group-list">
-              <div class="orange">CN</div>
-              <span>CSS Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="blue">WK</div>
-              <span>Work</span>
-            </li>
-
-            <li class="group-list">
-              <div class="light-blue">SN</div>
-              <span>SQL Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="purple">DP</div>
-              <span>Design Projects</span>
-            </li>
-
-            <li class="group-list">
-              <div class="pink">RT</div>
-              <span>React Tasks</span>
-            </li>
-
-            <li class="group-list">
-              <div class="cyan">AN</div>
-              <span>Analytics Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="orange">UI</div>
-              <span>UI Ideas</span>
-            </li>
-
-            <li class="group-list">
-              <div class="blue">DB</div>
-              <span>Database Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="light-blue">AP</div>
-              <span>App Planning</span>
-            </li>
-
-            <li class="group-list">
-              <div class="purple">ML</div>
-              <span>Machine Learning</span>
-            </li>
-
-            <li class="group-list">
-              <div class="pink">WD</div>
-              <span>Web Dev Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="cyan">TS</div>
-              <span>TypeScript Notes</span>
-            </li>
-
-            <li class="group-list">
-              <div class="orange">GX</div>
-              <span>Graphics Experiments</span>
-            </li>
+            {groups.map((g, i) => (
+              <li key={i} className="group-list">
+                <div className={g.colour}>
+                  {" "}
+                  {g.name
+                    .split(" ")
+                    .filter(Boolean)
+                    .slice(0, 2)
+                    .map((w) => w[0].toUpperCase())
+                    .join("")}
+                </div>
+                <span>{g.name}</span>
+              </li>
+            ))}
           </ul>
 
           <div>
@@ -131,21 +80,75 @@ function App() {
 
         {show && (
           <div className="create">
-            <form onSubmit={handleSubmit} className="create-group">
+            <form
+              onSubmit={handleSubmit}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") handleSubmit(e);
+              }}
+              className="create-group"
+            >
               <h1>Create New Group</h1>
+
               <div className="group-name">
                 <label>Group Name</label>
-                <input type="text" placeholder="Enter group name" />
+                <input
+                  type="text"
+                  value={groupName}
+                  onChange={(e) => setGroupName(e.target.value)}
+                  placeholder="Enter group name"
+                />
               </div>
+
               <div className="colour-group">
                 <label>Choose colour</label>
                 <div className="colours">
-                  <button className="colour purple"></button>
-                  <button className="colour pink"></button>
-                  <button className="colour cyan"></button>
-                  <button className="colour orange"></button>
-                  <button className="colour blue"></button>
-                  <button className="colour light-blue"></button>
+                  <button
+                    className={`colour purple ${
+                      selectedColour === "purple" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("purple")}
+                  ></button>
+
+                  <button
+                    className={`colour pink ${
+                      selectedColour === "pink" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("pink")}
+                  ></button>
+
+                  <button
+                    className={`colour cyan ${
+                      selectedColour === "cyan" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("cyan")}
+                  ></button>
+
+                  <button
+                    className={`colour orange ${
+                      selectedColour === "orange" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("orange")}
+                  ></button>
+
+                  <button
+                    className={`colour blue ${
+                      selectedColour === "blue" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("blue")}
+                  ></button>
+
+                  <button
+                    className={`colour light-blue ${
+                      selectedColour === "light-blue" ? "selected" : ""
+                    }`}
+                    type="button"
+                    onClick={() => setSelectedColour("light-blue")}
+                  ></button>
                 </div>
               </div>
             </form>
