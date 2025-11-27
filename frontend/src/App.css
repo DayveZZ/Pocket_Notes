@@ -3,6 +3,7 @@
 :root {
   --dark: #292929;
   --light-gray: #d9d9d9;
+  --dark-blue: #16008b;
 
   --purple: #b38bfa;
   --pink: #ff79f2;
@@ -60,75 +61,6 @@
   padding: 4rem 2rem 2rem 2rem;
 }
 
-/* NOTES GROUPS */
-.group {
-  height: 100%;
-  padding: 1rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  outline: none;
-
-  overflow-y: auto;
-}
-.group::-webkit-scrollbar {
-  width: 10px;
-  background: var(--light-gray);
-  border-radius: 10px;
-}
-
-.group::-webkit-scrollbar-thumb {
-  background: white;
-  border-radius: 10px;
-  cursor: pointer;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.group-list {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-weight: 500;
-}
-.group-list > div {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  /* background: #d32727; */
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.group-list > * {
-  cursor: pointer;
-}
-.leftBox > div {
-  display: flex;
-  justify-content: end;
-  padding: 2rem;
-  position: absolute;
-  bottom: 0;
-  width: 330px;
-}
-.plusBtn {
-  width: 70px;
-  height: 70px;
-  background: #0000a0;
-  color: white;
-  border: none;
-  outline: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3.8rem;
-  cursor: pointer;
-}
-.plusBtn:hover {
-  color: var(--light-gray);
-}
 /* RIGHT PANEL */
 .rightBox {
   width: 100%;
@@ -166,62 +98,4 @@
   display: flex;
   align-items: center;
   gap: 5px;
-}
-
-/* Create Group */
-.create {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.create-group {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 35%;
-  padding: 2rem;
-  background: #fff;
-  display: flex;
-  flex-direction: column;
-  border-radius: 5px;
-}
-
-.create-group > * {
-  padding: 1rem 0;
-  font-weight: 600;
-}
-.group-name label {
-  white-space: nowrap;
-}
-.group-name input {
-  width: 100%;
-  padding: 0.8rem 1rem;
-  outline: none;
-
-  border: 2px solid var(--light-gray);
-  border-radius: 25px;
-}
-.group-name,
-.colour-group {
-  display: flex;
-  align-items: center;
-
-  gap: 1rem;
-}
-.colours {
-  display: flex;
-  gap: 0.5rem;
-}
-.colour {
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  outline: none;
-  border: none;
-  cursor: pointer;
-}
-.colour.selected {
-  box-shadow: 0 0 2px 2px rgba(31, 31, 31, 0.5);
 }
