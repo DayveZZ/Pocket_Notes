@@ -81,3 +81,7 @@
 .textarea button img {
   width: 32px;
 }
+
+.back-btn {
+  display: none;
+}

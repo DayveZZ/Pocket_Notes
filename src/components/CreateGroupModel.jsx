@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useGroups } from "../context/GroupsContext.jsx";
-
+import "../styles/CreateGroup.css";
 const colours = ["purple", "pink", "cyan", "orange", "blue", "light-blue"];
 
 export default function CreateGroupModal({ onClose }) {

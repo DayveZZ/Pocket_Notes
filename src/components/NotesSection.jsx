@@ -2,7 +2,7 @@ import { useState } from "react";
 import arrow from "../assets/Textarea-Arrow.svg";
 import "../styles/NotesSection.css";
 
-export default function NotesSection({ group }) {
+export default function NotesSection({ group, onBack }) {
   const [notes, setNotes] = useState({});
   const [text, setText] = useState("");
 
@@ -34,24 +34,25 @@ export default function NotesSection({ group }) {
   return (
     <div className="notes-view">
       <div className="notes-header">
+        {onBack && (
+          <button className="back-btn" onClick={onBack}>
+            ←
+          </button>
+        )}
         <h2>{group.name}</h2>
       </div>
 
       <div className="notes-list">
-        {groupNotes.length === 0 ? (
-          <p className="no-notes">No notes yet...</p>
-        ) : (
-          groupNotes.map((note, i) => (
-            <div key={i} className="note-item">
-              <p>{note.text}</p>
-              <div className="note-meta">
-                <div className="date">{note.date}</div>
-                <p className="dot"></p>
-                <div className="time">{note.time}</div>
-              </div>
+        {groupNotes.map((note, i) => (
+          <div key={i} className="note-item">
+            <p>{note.text}</p>
+            <div className="note-meta">
+              <div className="date">{note.date}</div>
+              <p className="dot"></p>
+              <div className="time">{note.time}</div>
             </div>
-          ))
-        )}
+          </div>
+        ))}
       </div>
 
       <div className="textarea">
