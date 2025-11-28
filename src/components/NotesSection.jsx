@@ -1,7 +1,7 @@
 import { useState } from "react";
 import arrow from "../assets/Textarea-Arrow.svg";
 import "../styles/NotesSection.css";
-
+import "../styles/Group.css";
 export default function NotesSection({ group, onBack }) {
   const [notes, setNotes] = useState({});
   const [text, setText] = useState("");
@@ -24,11 +24,17 @@ export default function NotesSection({ group, onBack }) {
         month: "short",
         year: "numeric",
       }),
+      animate: true,
     };
 
     const newNotes = { ...notes, [group.name]: [...groupNotes, noteData] };
     setNotes(newNotes);
     setText("");
+
+    setTimeout(() => {
+      noteData.animate = false;
+      setNotes({ ...newNotes });
+    }, 500);
   };
 
   return (
@@ -39,12 +45,19 @@ export default function NotesSection({ group, onBack }) {
             ←
           </button>
         )}
+        <div className={group.colour}>
+          {group.name
+            .split(" ")
+            .slice(0, 2)
+            .map((w) => w[0].toUpperCase())
+            .join("")}
+        </div>
         <h2>{group.name}</h2>
       </div>
 
       <div className="notes-list">
         {groupNotes.map((note, i) => (
-          <div key={i} className="note-item">
+          <div key={i} className={`note-item ${note.animate ? "fade-in" : ""}`}>
             <p>{note.text}</p>
             <div className="note-meta">
               <div className="date">{note.date}</div>

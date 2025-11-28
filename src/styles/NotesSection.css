@@ -12,8 +12,19 @@
   color: #fff;
   padding: 1rem;
   display: flex;
+  align-items: center;
+  gap: 1rem;
   position: sticky;
   top: 0;
+}
+.notes-header > div {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .notes-list {
   padding: 1rem 1.6rem;
@@ -41,6 +52,26 @@
   margin-bottom: 1rem;
   border-radius: 5px;
   box-shadow: 0 0 10px -5px rgba(0, 0, 0, 0.5);
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease;
+}
+
+.note-item.fade-in {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .note-meta {
   display: flex;
