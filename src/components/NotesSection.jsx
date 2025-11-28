@@ -1,15 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import arrow from "../assets/Textarea-Arrow.svg";
 import "../styles/NotesSection.css";
 import "../styles/Group.css";
 export default function NotesSection({ group, onBack }) {
-  const [notes, setNotes] = useState({});
+  const [notes, setNotes] = useState([]);
   const [text, setText] = useState("");
-  const groupNotes = notes[group.name] || [];
+  const storageKey = `notes-${group.name.trim()}`;
+  useEffect(() => {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(notes));
+    } catch (err) {
+      console.error("Failed to save notes:", err);
+    }
+  }, [notes, storageKey]);
+  useEffect(() => {
+    localStorage.setItem(storageKey, JSON.stringify(notes));
+  }, [notes, storageKey]);
   const handleAddNote = () => {
     if (!text.trim()) return;
     const now = new Date();
     const noteData = {
+      id: Date.now(),
       text,
       time: now.toLocaleTimeString([], {
         hour: "2-digit",
@@ -23,12 +34,15 @@ export default function NotesSection({ group, onBack }) {
       }),
       animate: true,
     };
-    const newNotes = { ...notes, [group.name]: [...groupNotes, noteData] };
+    const newNotes = [...notes, noteData];
     setNotes(newNotes);
     setText("");
     setTimeout(() => {
-      noteData.animate = false;
-      setNotes({ ...newNotes });
+      setNotes((prev) => {
+        const updated = [...prev];
+        if (updated.length) updated[updated.length - 1].animate = false;
+        return updated;
+      });
     }, 500);
   };
   return (
@@ -48,9 +62,13 @@ export default function NotesSection({ group, onBack }) {
         </div>
         <h2>{group.name}</h2>
       </div>
+
       <div className="notes-list">
-        {groupNotes.map((note, i) => (
-          <div key={i} className={`note-item ${note.animate ? "fade-in" : ""}`}>
+        {notes.map((note) => (
+          <div
+            key={note.id}
+            className={`note-item ${note.animate ? "fade-in" : ""}`}
+          >
             <p>{note.text}</p>
             <div className="note-meta">
               <div className="date">{note.date}</div>
