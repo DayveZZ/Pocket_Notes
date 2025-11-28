@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { GroupsProvider } from "./context/GroupsContext.jsx";
 import GroupList from "./components/GroupsList.jsx";
 import CreateGroupModal from "./components/CreateGroupModel.jsx";
 import RightPanel from "./components/RightPanel.jsx";
@@ -10,14 +9,18 @@ import "./styles/Group.css";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
+  const [selectedGroup, setSelectedGroup] = useState(null);
 
   return (
-    <GroupsProvider>
-      <div className="main">
-        <GroupList onCreate={() => setShowModal(true)} />
-        <RightPanel />
-        {showModal && <CreateGroupModal onClose={() => setShowModal(false)} />}
-      </div>
-    </GroupsProvider>
+    <div className="main">
+      {/* <GroupList onCreate={() => setShowModal(true)} /> */}
+      <GroupList
+        onCreate={() => setShowModal(true)}
+        selectedGroup={selectedGroup}
+        onSelectGroup={setSelectedGroup}
+      />
+      <RightPanel selectedGroup={selectedGroup} />
+      {showModal && <CreateGroupModal onClose={() => setShowModal(false)} />}
+    </div>
   );
 }

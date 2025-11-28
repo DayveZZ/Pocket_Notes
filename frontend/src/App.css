@@ -3,6 +3,7 @@
 :root {
   --dark: #292929;
   --light-gray: #d9d9d9;
+  --light-blue-bg: #dae5f5;
   --dark-blue: #16008b;
 
   --purple: #b38bfa;
@@ -64,7 +65,7 @@
 /* RIGHT PANEL */
 .rightBox {
   width: 100%;
-  background: #dae5f5;
+  background: var(--light-blue-bg);
   display: flex;
   flex-direction: column;
   justify-content: center;
