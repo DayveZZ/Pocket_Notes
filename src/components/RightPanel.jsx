@@ -2,10 +2,8 @@ import { useGroups } from "../context/GroupsContext.jsx";
 import bgPreview from "../assets/image-removebg-preview 1.svg";
 import NotesSection from "./NotesSection.jsx";
 import "../styles/NotesSection.css";
-
 export default function RightPanel({ selectedGroup, onBack }) {
   const { groups } = useGroups();
-
   if (selectedGroup === null || !groups[selectedGroup]) {
     return (
       <div className="rightBox">
@@ -21,7 +19,6 @@ export default function RightPanel({ selectedGroup, onBack }) {
       </div>
     );
   }
-
   const group = groups[selectedGroup];
   return <NotesSection group={group} onBack={onBack} />;
 }

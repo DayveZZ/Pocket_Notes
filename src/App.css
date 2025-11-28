@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
-
 :root {
   --dark: #292929;
   --light-gray: #d9d9d9;
@@ -13,14 +12,12 @@
   --blue: #0047ff;
   --light-blue: #6691ff;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-
 .purple {
   background: var(--purple);
 }
@@ -39,13 +36,10 @@
 .light-blue {
   background: var(--light-blue);
 }
-
 .main {
   height: 100vh;
   display: flex;
 }
-
-/* LEFT PANEL */
 .leftBox {
   background: #ffffff;
   display: flex;
@@ -54,15 +48,12 @@
   height: 100%;
   min-width: 330px;
 }
-
 .leftBox h2 {
   font-weight: 500;
   font-size: 1.8rem;
   text-align: center;
   padding: 4rem 2rem 2rem 2rem;
 }
-
-/* RIGHT PANEL */
 .rightBox {
   width: 100%;
   background: var(--light-blue-bg);
@@ -73,24 +64,19 @@
   text-align: center;
   gap: 0.5rem;
 }
-
 .rightBox img {
   width: 45%;
 }
-
 .rightBox h1 {
   font-size: 2.4rem;
   font-weight: 600;
 }
-
 .rightBox p {
   color: var(--dark);
   font-weight: 500;
   font-size: 0.9rem;
   letter-spacing: 0.3px;
 }
-
-/* FOOTER */
 .footerText {
   position: absolute;
   bottom: 2rem;

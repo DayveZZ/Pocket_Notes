@@ -3,11 +3,9 @@ import "../styles/Group.css";
 import "../styles/CreateButton.css";
 export default function GroupList({ onCreate, selectedGroup, onSelectGroup }) {
   const { groups } = useGroups();
-
   return (
     <div className="leftBox">
       <h2>Pocket Notes</h2>
-
       <ul className="group">
         {groups.map((g, i) => (
           <li
@@ -26,12 +24,10 @@ export default function GroupList({ onCreate, selectedGroup, onSelectGroup }) {
                   .join("")}
               </div>
             </div>
-
             <span>{g.name}</span>
           </li>
         ))}
       </ul>
-
       <div className="plusBtn">
         <button onClick={onCreate}>+</button>
       </div>

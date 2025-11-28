@@ -31,7 +31,6 @@
   height: 100%;
   overflow-y: auto;
 }
-
 .notes-list::-webkit-scrollbar {
   width: 10px;
   background: var(--dark);
@@ -44,7 +43,6 @@
   border: 1px solid transparent;
   background-clip: padding-box;
 }
-
 .note-item {
   padding: 1rem;
   background-color: #fff;
@@ -56,13 +54,11 @@
   transform: translateY(0);
   transition: all 0.4s ease;
 }
-
 .note-item.fade-in {
   opacity: 0;
   transform: translateY(10px);
   animation: fadeIn 0.4s ease forwards;
 }
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -113,7 +109,6 @@
 .textarea button img {
   width: 32px;
 }
-
 .back-btn {
   display: none;
 }

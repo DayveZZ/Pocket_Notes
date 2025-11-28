@@ -5,12 +5,9 @@ import "../styles/Group.css";
 export default function NotesSection({ group, onBack }) {
   const [notes, setNotes] = useState({});
   const [text, setText] = useState("");
-
   const groupNotes = notes[group.name] || [];
-
   const handleAddNote = () => {
     if (!text.trim()) return;
-
     const now = new Date();
     const noteData = {
       text,
@@ -26,17 +23,14 @@ export default function NotesSection({ group, onBack }) {
       }),
       animate: true,
     };
-
     const newNotes = { ...notes, [group.name]: [...groupNotes, noteData] };
     setNotes(newNotes);
     setText("");
-
     setTimeout(() => {
       noteData.animate = false;
       setNotes({ ...newNotes });
     }, 500);
   };
-
   return (
     <div className="notes-view">
       <div className="notes-header">
@@ -54,7 +48,6 @@ export default function NotesSection({ group, onBack }) {
         </div>
         <h2>{group.name}</h2>
       </div>
-
       <div className="notes-list">
         {groupNotes.map((note, i) => (
           <div key={i} className={`note-item ${note.animate ? "fade-in" : ""}`}>
@@ -67,7 +60,6 @@ export default function NotesSection({ group, onBack }) {
           </div>
         ))}
       </div>
-
       <div className="textarea">
         <textarea
           placeholder="Enter your text here........"

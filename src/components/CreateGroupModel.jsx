@@ -2,23 +2,19 @@ import { useState, useEffect, useRef } from "react";
 import { useGroups } from "../context/GroupsContext.jsx";
 import "../styles/CreateGroup.css";
 const colours = ["purple", "pink", "cyan", "orange", "blue", "light-blue"];
-
 export default function CreateGroupModal({ onClose }) {
   const { groups, setGroups } = useGroups();
   const [groupName, setGroupName] = useState("");
   const [selectedColour, setSelectedColour] = useState(null);
   const modalRef = useRef(null);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const finalColour =
       selectedColour || colours[Math.floor(Math.random() * colours.length)];
-
     const newGroup = { name: groupName, colour: finalColour };
     setGroups([...groups, newGroup]);
     onClose();
   };
-
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") {
@@ -28,7 +24,6 @@ export default function CreateGroupModal({ onClose }) {
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
   }, [onClose]);
-
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (modalRef.current && !modalRef.current.contains(e.target)) {
@@ -38,7 +33,6 @@ export default function CreateGroupModal({ onClose }) {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [onClose]);
-
   return (
     <div className="create">
       <form
@@ -61,7 +55,6 @@ export default function CreateGroupModal({ onClose }) {
             required
           />
         </div>
-
         <div className="colour-group">
           <label>Choose colour</label>
           <div className="colours">
@@ -77,7 +70,6 @@ export default function CreateGroupModal({ onClose }) {
             ))}
           </div>
         </div>
-
         <div className="create-btn">
           <button type="submit">Create</button>
         </div>

@@ -8,7 +8,6 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  /* width: 40%; */
   transform: translate(-50%, -50%);
   padding: 1rem 2rem;
   background: #fff;
@@ -16,12 +15,10 @@
   flex-direction: column;
   border-radius: 5px;
 }
-
 .create-group > * {
   padding: 0.6rem;
   font-weight: 600;
 }
-
 .create-btn {
   padding: 0;
   margin-top: 1rem;
@@ -54,7 +51,6 @@
   align-items: center;
   gap: 2rem;
 }
-
 .colours {
   display: flex;
   gap: 0.5rem;
