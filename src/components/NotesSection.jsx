@@ -7,12 +7,10 @@ export default function NotesSection({ group, onBack }) {
   const [text, setText] = useState("");
   const storageKey = `notes-${group.name.trim()}`;
   useEffect(() => {
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(notes));
-    } catch (err) {
-      console.error("Failed to save notes:", err);
-    }
-  }, [notes, storageKey]);
+    const saved = localStorage.getItem(storageKey);
+    if (saved) setNotes(JSON.parse(saved));
+    else setNotes([]);
+  }, [storageKey]);
   useEffect(() => {
     localStorage.setItem(storageKey, JSON.stringify(notes));
   }, [notes, storageKey]);
